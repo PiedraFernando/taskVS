@@ -1,0 +1,11 @@
+h1 {
+  font-size: 24px;
+  text-align: center;
+  padding: 18px;
+  background-color: var(--main-bg-dark);
+  color: #519aba;
+}
+
+h1 span{
+  color: #cbbe3a;
+}

@@ -1,0 +1,15 @@
+.center{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.search{
+  padding: 8px;
+  width: 80%;
+  border: solid 4px #241b2f;
+  background-color: var(--main-bg-light);
+  color: var(--white);
+  margin-top: 14px;
+  margin-bottom: 14px;
+  text-align: center;
+}

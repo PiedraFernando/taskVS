@@ -1,0 +1,48 @@
+li{
+  margin: 8px;
+  min-width: 100%;
+  border: 2px solid var(--main-bg-dark);
+}
+
+.hover:hover{
+  background-color: #2f2441;
+}
+
+.window-head{
+  background-color: var(--main-bg-dark);
+  color: var(--white);
+  padding: 4px;
+  display: flex;
+}
+.float-right{
+  display: flex;
+  position: relative;
+  right: 0;
+}
+.window-head span{
+  grid-column: 1 / 10;
+}
+
+.window-body{
+  padding: 4px;
+  color: var(--white);
+}
+
+.llave{
+  color: #dcb629;
+}
+
+.propiedad{
+  color: #4dc2a5;
+}
+
+.bool{
+  color:#f97e72
+}
+
+.text{
+  color: #ff8b39;
+}
+.w-100{
+  width: 100%;
+}

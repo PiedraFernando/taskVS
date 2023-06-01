@@ -1,0 +1,15 @@
+.btn-create{
+  font-size: 14px;
+  padding: 10px;
+}
+form{
+  margin-bottom: 50px;
+}
+.flex{
+  display: flex;
+}
+textarea{
+  background: transparent;
+  border: solid 2px var(--main-bg-dark);
+  color: #ff8b39;
+}

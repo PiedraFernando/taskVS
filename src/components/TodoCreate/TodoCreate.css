@@ -1,0 +1,15 @@
+button{
+  background-color: var(--main-bg-dark);
+  border-style: none;
+  color: var(--white);
+  font-size: 20px;
+  padding: 18px;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+}
+
+button:hover{
+  background-color: #2f2441;
+}
