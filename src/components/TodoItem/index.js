@@ -7,8 +7,8 @@ function TodoItem(props) {
       <div className="window-head">
         <span className='w-100'>{props.date}</span>
         <div className='float-right'>
-          <div>{props.pinned ? <Pinned /> : <Pin />}</div>
-          <div>
+          <div onClick={props.onPin}>{props.pinned ? <Pinned /> : <Pin />}</div>
+          <div onClick={props.onEdit}>
             <Edit />
           </div>
           <div onClick={props.onDelete}>

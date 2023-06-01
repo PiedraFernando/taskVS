@@ -1,0 +1,9 @@
+.logMessage{
+  background-color: var(--main-bg-dark);
+  padding: 8px;
+  position: absolute;
+  bottom: 100px;
+  z-index: 1;
+  left: 25px;
+  color: var(--white);
+}

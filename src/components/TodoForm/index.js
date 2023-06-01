@@ -3,16 +3,20 @@ import './TodoForm.css';
 import {TodoContext} from '../../TodoContext';
 
 function TodoForm() {
-  const {setOpenModal, addTodo} = useContext(TodoContext);
-  const [task, setTask] = useState('');
+  const {setOpenModal, addTodo, editTodo, updateTodo} = useContext(TodoContext);
+  const [task, setTask] = useState(editTodo || '');
   const onSubmit = (e) => {
     e.preventDefault();
-    addTodo({
-      text: task,
-      date: new Date().toLocaleString(),
-      pinned: false,
-      completed: false,
-    });
+    if(editTodo){
+      updateTodo(editTodo, task)
+    }else{
+      addTodo({
+        text: task,
+        date: new Date().toLocaleString(),
+        pinned: false,
+        completed: false,
+      });
+    }
     setOpenModal((state) => !state);
   };
   const onChange = (e) => {

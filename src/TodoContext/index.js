@@ -7,9 +7,31 @@ function TodoProvider(props) {
   const {item: todos, saveItem: setTodos, loading, error} = useLocalStorage('TODOS_V1', []);
   const [searchValue, setSearchValue] = React.useState('');
   const [openModal, setOpenModal] = React.useState(false);
+  const [logMessage, setLogMessage] = React.useState('');
+  const [editTodo, setEditTodo] = React.useState('');
+  const [timeoutMessage, setTimeoutMessage] = React.useState();
   const completedTodos = todos.filter((todo) => !!todo.completed).length;
   const totalTodos = todos.length;
-  const todosFilters = todos.filter((todo) => {
+
+  const sortedPinnedTodos = [...todos].sort((a, b) => {
+    if (a.pinned && !b.pinned) {
+      return -1;
+    } else if (!a.pinned && b.pinned) {
+      return 1;
+    } else {
+      return 0;
+    }
+  });
+  const sortedComplitedTodos = [...sortedPinnedTodos].sort((a, b) => {
+    if (a.completed && !b.completed) {
+      return 1;
+    } else if (!a.completed && b.completed) {
+      return -1;
+    } else {
+      return 0;
+    }
+  });
+  const todosFilters = sortedComplitedTodos.filter((todo) => {
     const todoText = todo.text.toLocaleLowerCase();
     const searchText = searchValue.toLocaleLowerCase();
     return todoText.includes(searchText);
@@ -17,8 +39,26 @@ function TodoProvider(props) {
   const complateTodo = (text) => {
     const newTodos = todos.map((todo) => {
       if (todo.text === text) {
+        if (!todo.completed) {
+          newMessage(`Has completado el TODO: ${text} !Felicidades!`);
+        } else {
+          newMessage(`Parece que olvidaste algo en TODO: ${text}`);
+        }
         todo.completed = !todo.completed;
-        return todo;
+      }
+      return todo;
+    });
+    setTodos(newTodos);
+  };
+  const pinTodo = (text) => {
+    const newTodos = todos.map((todo) => {
+      if (todo.text === text) {
+        if (todo.pinned) {
+          newMessage(`Has desanclado el TODO: ${text}`);
+        } else {
+          newMessage(`Has anclado el TODO: ${text}`);
+        }
+        todo.pinned = !todo.pinned;
       }
       return todo;
     });
@@ -27,18 +67,61 @@ function TodoProvider(props) {
   const deleteTodo = (text) => {
     const newTodos = todos.filter((todo) => todo.text !== text);
     setTodos(newTodos);
+    newMessage(`Has eliminado el TODO: ${text}`);
   };
-
   const addTodo = (obj) => {
     const newTodos = [...todos, obj];
+    newMessage(`Has agregado el TODO: ${obj.text}`);
     setTodos(newTodos);
+  };
+  const updateTodo = (antText, text) => {
+    const newTodos = todos.map((todo) => {
+      if (todo.text === antText) {
+        newMessage(`Has actualizado el TODO: ${text}`);
+        todo.text = text;
+        todo.completed = false;
+        todo.pinned = false
+        todo.date = new Date().toLocaleString()
+      }
+      return todo;
+    });
+    setTodos(newTodos);
+  };
+  const newMessage = (text) => {
+    clearTimeout(timeoutMessage);
+    setLogMessage(text);
+    const timeOut = setTimeout(() => {
+      setLogMessage('');
+    }, 2000);
+    setTimeoutMessage(timeOut);
   };
 
   return (
-    <TodoContext.Provider value={{addTodo, openModal, setOpenModal, loading, error, completedTodos, totalTodos, searchValue, setSearchValue, todosFilters, complateTodo, deleteTodo}}>
+    <TodoContext.Provider
+      value={{
+        editTodo,
+        setEditTodo,
+        updateTodo,
+        logMessage,
+        pinTodo,
+        addTodo,
+        openModal,
+        setOpenModal,
+        loading,
+        error,
+        completedTodos,
+        totalTodos,
+        searchValue,
+        setSearchValue,
+        todosFilters,
+        complateTodo,
+        deleteTodo,
+      }}>
       {props.children}
     </TodoContext.Provider>
   );
 }
 
 export {TodoContext, TodoProvider};
+
+//[{"text":"test","date":"6/1/2023, 11:06:03 AM","pinned":false,"completed":false}]

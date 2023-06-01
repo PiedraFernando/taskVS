@@ -9,6 +9,7 @@ import {TodoContext, TodoProvider} from './TodoContext';
 import {Modal} from './components/Modal';
 import './App.css';
 import {TodoForm} from './components/TodoForm';
+import {LogMessage} from './components/LogMessage';
 
 function App() {
   return (
@@ -19,7 +20,7 @@ function App() {
 }
 
 function UI() {
-  const {loading, error, todosFilters, complateTodo, deleteTodo, openModal} = React.useContext(TodoContext);
+  const {setEditTodo, loading, error, todosFilters, complateTodo, deleteTodo, openModal, pinTodo, logMessage, setOpenModal} = React.useContext(TodoContext);
   return (
     <>
       <TodoCounter />
@@ -42,6 +43,13 @@ function UI() {
             onComplete={() => {
               complateTodo(todo.text);
             }}
+            onPin={() => {
+              pinTodo(todo.text);
+            }}
+            onEdit={() => {
+              setEditTodo(todo.text)
+              setOpenModal(state => !state)
+            }}
             text={todo.text}
             date={todo.date}
             pinned={todo.pinned}
@@ -56,6 +64,7 @@ function UI() {
           <TodoForm />
         </Modal>
       )}
+      <LogMessage text={logMessage} />
     </>
   );
 }

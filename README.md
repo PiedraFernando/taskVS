@@ -1,12 +1,22 @@
-# Repositorio base del Curso de Introducción a React.js en Platzi
+# Proyecto taskVS con base en 'Curso de React' de Platzi
 
-¡Hola, Platzinauta!
+Hola a todos, Soy <FernandoPiedra: https://github.com/PiedraFernando /> y acabo de crear este software para registrar los TODOS con una apariencia peculiar je, je, je
+El sistema estaba basado en el tema de VScode `SynthWave '84` y con el aprendizaje que me transmitió <Juan David Castro: https://github.com/juandc/>
 
-En este repositorio encontrarás el código de todas las clases del [Curso de Introducción a React.js](https://platzi.com/reactjs). Para empezar solo debes clonar este repositorio (`git clone`), instalar sus dependencias (`npm i`) y ejecutar la aplicación (`npm start`).
+## Pruébala en: https://piedrafernando.github.io/taskVS/
 
-La rama principal contiene el código con el que eempezamos el curso. En las demás ramas encontrarás el código de las siguientes clases y finalmente el deploy de la aplicación.
+## Funcionalidades que encontraras:
+* PWA (aplicación web progresiva): Ósea que la puedes instalar en tu PC o teléfono :)
+* Anclar tareas: Las tareas más importantes o que necesitas repetir todos los dias las puedes anclar para que se repitan todos los días y las encuentres al inicio.
+* Agregar TODOS: Crea los TODOS que necesites sin problemas.
+* Editar TODOS: Si te equivocas al escribir algo, lo puedes editar y sé reiniciar los valores para que sepas la última hora de actualización.
+* Log de las actividades: Aparece un mensaje en la esquina inferior para que sepas cuál fue tu última acción con precisión
+* Auto limpieza: al abrir la aplicación se revisaran las tareas y las que no estén ancladas y sean del día anterior, se borraran automáticamente y las ancladas se desmarcaran :-o
 
-¡Mucha suerte aprendiendo React! #NuncaParesDeAprender
+
+## Comentarios finales
+Espero que les guste y sirva, en lo personal espero usarla mucho.
+Si algo de aquí les sirve de inspiración, tómenlo, transfórmenlo y utilícenlo como más les sirva.
 
 ## Getting Started with Create React App
 
