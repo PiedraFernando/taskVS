@@ -12,7 +12,6 @@ function Modal(props) {
         <div className="window-head">
           <span className='w-100'>{new Date().toLocaleString()}</span>
           <div className="float-right">
-            <div>{props.pinned ? <Pinned /> : <Pin />}</div>
             <div onClick={()=>{setOpenModal(state => !state)}}>
               <Close />
             </div>
