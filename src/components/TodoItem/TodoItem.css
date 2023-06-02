@@ -19,9 +19,6 @@ li{
   position: relative;
   right: 0;
 }
-.window-head span{
-  grid-column: 1 / 10;
-}
 
 .window-body{
   padding: 4px;

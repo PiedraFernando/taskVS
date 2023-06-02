@@ -1,5 +1,6 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import {useLocalStorage} from '../customHooks/useLocalStorage';
+import moment from 'moment';
 
 const TodoContext = React.createContext();
 
@@ -12,6 +13,33 @@ function TodoProvider(props) {
   const [timeoutMessage, setTimeoutMessage] = React.useState();
   const completedTodos = todos.filter((todo) => !!todo.completed).length;
   const totalTodos = todos.length;
+
+  useEffect(() => {
+    if ((loading === false)) {
+      let deleted = 0;
+      let updated = 0;
+      const newTodos = todos.map((todo) => {
+        const date = moment(todo.date);
+        const days = moment().diff(date, 'days');
+        if (days > 0) {
+          if (todo.completed && !todo.pinned) {
+            deleted++;
+            return null;
+          }
+          if (todo.pinned && todo.completed) {
+            todo.completed = false;
+            todo.date = new Date().toLocaleString();
+            updated++;
+            return todo;
+          }
+        }
+        return todo;
+      }).filter((todo) => todo !== null);;
+      setTodos(newTodos);
+      newMessage(`Se han actualizado: ${updated} y eliminado: ${deleted} TODOS`);
+    }
+    // eslint-disable-next-line
+  }, [loading]);
 
   const sortedPinnedTodos = [...todos].sort((a, b) => {
     if (a.pinned && !b.pinned) {
@@ -80,8 +108,8 @@ function TodoProvider(props) {
         newMessage(`Has actualizado el TODO: ${text}`);
         todo.text = text;
         todo.completed = false;
-        todo.pinned = false
-        todo.date = new Date().toLocaleString()
+        todo.pinned = false;
+        todo.date = new Date().toLocaleString();
       }
       return todo;
     });
@@ -92,7 +120,7 @@ function TodoProvider(props) {
     setLogMessage(text);
     const timeOut = setTimeout(() => {
       setLogMessage('');
-    }, 2000);
+    }, 3000);
     setTimeoutMessage(timeOut);
   };
 
