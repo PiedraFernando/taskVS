@@ -39,7 +39,7 @@ function TodoForm() {
         {'\u00A0'.repeat(2)} <span className="propiedad">completed</span>: <span className="bool hover">false</span>
       </p>
       <p className="llave">{'}'}</p>
-      <button className="btn-create">Crear</button>
+      <button className="btn-create">{editTodo?'Editar':'Crear'}</button>
     </form>
   );
 }

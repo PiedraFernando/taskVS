@@ -113,6 +113,7 @@ function TodoProvider(props) {
       }
       return todo;
     });
+    setEditTodo('')
     setTodos(newTodos);
   };
   const newMessage = (text) => {

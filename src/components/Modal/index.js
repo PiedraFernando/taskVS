@@ -1,5 +1,5 @@
 import {createPortal} from 'react-dom';
-import {Close, Pin, Pinned} from '../icons';
+import {Close} from '../icons';
 import { useContext } from 'react';
 import { TodoContext } from '../../TodoContext';
 import './Modal.css';
